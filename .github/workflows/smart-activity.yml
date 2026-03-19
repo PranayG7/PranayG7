@@ -1,0 +1,47 @@
+name: Smart Daily Activity
+
+on:
+  schedule:
+    - cron: '0 18 * * *'   # Runs daily at 11:30 PM IST
+  workflow_dispatch:
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Update README with date
+        run: |
+          DATE=$(date +"%d %B %Y")
+
+          # Remove old update line
+          sed -i '/📅 Last Updated:/d' README.md
+
+          # Add updated line at top
+          echo -e "📅 Last Updated: $DATE\n\n$(cat README.md)" > README.md
+
+      - name: Generate smart commit message
+        run: |
+          messages=(
+            "Worked on DSA"
+            "Practiced problem solving"
+            "Improved backend logic"
+            "Learning new concepts"
+            "Refactored code"
+            "Progress update"
+            "Code improvements"
+            "Studied system design basics"
+          )
+          echo "MSG=${messages[$RANDOM % ${#messages[@]}]}" >> $GITHUB_ENV
+
+      - name: Commit and push changes
+        run: |
+          git config --global user.name "Pranay Grover"
+          git config --global user.email "pranaygrover127@gmail.com"
+
+          git add .
+          git commit -m "$MSG" || echo "No changes to commit"
+          git push
