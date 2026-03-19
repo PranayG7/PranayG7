@@ -1,5 +1,4 @@
 <h1 align="center">Hey <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Hand%20gestures/Waving%20Hand.png" height="30px" width="30px"> I'm Pranay Grover</h1>
-<!-- AUTO-UPDATE -->
 <h3 align="center">Aspiring Software Engineer</h3>
 
 <p align="center">
@@ -12,6 +11,13 @@
 - I’m Pranay Grover, an aspiring Software Engineer and Full Stack Developer passionate about solving problems and building impactful applications.
 - I actively practice Data Structures & Algorithms to strengthen my logical thinking while also working with technologies like React, Node.js, Spring Boot, and MongoDB to develop scalable solutions.
 - I’m always eager to learn, improve, and take on new challenges in software development.
+
+  ## 📊 Daily Dev Tracker
+<!-- AUTO-UPDATE-START -->
+📅 Last Updated: Not yet  
+🧠 Current Focus: DSA  
+🔥 Daily Progress: Starting consistency  
+<!-- AUTO-UPDATE-END -->
 
 
 ## 🧠 My Focus Areas
