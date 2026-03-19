@@ -1,8 +1,8 @@
-name: Smart Daily Activity
+name: Smart DSA Tracker
 
 on:
   schedule:
-    - cron: '0 18 * * *'   # Runs daily at 11:30 PM IST
+    - cron: '0 18 * * *'   # 11:30 PM IST
   workflow_dispatch:
 
 jobs:
@@ -10,38 +10,51 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
+      - name: Checkout repo
         uses: actions/checkout@v3
 
-      - name: Update README with date
+      - name: Update tracker section
         run: |
           DATE=$(date +"%d %B %Y")
 
-          # Remove old update line
-          sed -i '/📅 Last Updated:/d' README.md
-
-          # Add updated line at top
-          echo -e "📅 Last Updated: $DATE\n\n$(cat README.md)" > README.md
-
-      - name: Generate smart commit message
-        run: |
-          messages=(
-            "Worked on DSA"
+          progress=(
+            "Solved DSA problems"
             "Practiced problem solving"
-            "Improved backend logic"
-            "Learning new concepts"
-            "Refactored code"
-            "Progress update"
-            "Code improvements"
-            "Studied system design basics"
+            "Revised concepts"
+            "Worked on backend"
+            "Improved coding skills"
+            "Studied algorithms"
           )
-          echo "MSG=${messages[$RANDOM % ${#messages[@]}]}" >> $GITHUB_ENV
 
-      - name: Commit and push changes
+          focus=(
+            "Data Structures & Algorithms"
+            "Backend Development"
+            "Full Stack Development"
+          )
+
+          PROG=${progress[$RANDOM % ${#progress[@]}]}
+          CURR=${focus[$RANDOM % ${#focus[@]}]}
+
+          NEW_CONTENT="📅 Last Updated: $DATE\n🧠 Current Focus: $CURR\n🔥 Daily Progress: $PROG"
+
+          awk -v new_content="$NEW_CONTENT" '
+          /<!-- AUTO-UPDATE-START -->/ {
+              print;
+              print new_content;
+              skip=1;
+              next;
+          }
+          /<!-- AUTO-UPDATE-END -->/ {
+              skip=0;
+          }
+          !skip
+          ' README.md > temp.md && mv temp.md README.md
+
+      - name: Commit changes
         run: |
           git config --global user.name "Pranay Grover"
           git config --global user.email "pranaygrover127@gmail.com"
 
-          git add .
-          git commit -m "$MSG" || echo "No changes to commit"
+          git add README.md
+          git commit -m "Updated daily dev tracker" || echo "No changes"
           git push
