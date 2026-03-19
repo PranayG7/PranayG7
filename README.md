@@ -24,6 +24,12 @@
 - Backend Development
 - Data Structures and Algorithms
 
+  ## 📊 LeetCode Stats
+
+<p align="center">
+  <img src="https://leetcard.jacoblin.cool/PranayG7?theme=dark&font=Karma&ext=heatmap" />
+</p>
+
 
 ## 📊 GitHub Stats & Trophies
 <p align="center">
